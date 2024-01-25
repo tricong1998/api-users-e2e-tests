@@ -1,0 +1,35 @@
+service:
+  name: api-users
+  baseUrl: ''
+  docsBaseUrl: /docs/users
+  apiVersion: 3.5.0
+  appVersion: 1.14.0
+
+server:
+  port: 3027
+  host: localhost
+  hostname:
+  cors:
+    allowedHeaders: "authorization,content-type"
+    exposedHeaders: "authorization,x-page,x-per-page,x-pages-count,x-total-count,x-next-page,x-response-time,x-request-id"
+
+mongodb:
+  uri: mongodb://127.0.0.1:27017/api-merchants
+  debug: false
+
+redis:
+  host: redis-cluster
+  port: 6379
+  options:
+  cluster:
+    nodes:
+    options:
+  merchantsDb: 27
+  merchantQueueSettlements: api-merchants-settlements
+  merchantQueueReports: api-merchants-reports
+  merchantStationDealerQueueReports: api-merchants-station-dealer-reports
+
+pino:
+  level: debug
+  enabled: false
+  autoLogging: false # to disable the automatic "request completed" and "request errored" logging

@@ -1,0 +1,96 @@
+service:
+  name: npm_package_name
+  description: npm_package_description
+  apiVersion: npm_package_version
+  appVersion: npm_package_version
+
+server:
+  host: SERVER_HOST
+  port: SERVER_PORT
+  hostname: SERVER_HOSTNAME
+  swaggerSchema: SWAGGER_SCHEMA
+
+redis:
+  host: REDIS_HOST
+  port: REDIS_PORT
+  options:
+    __name: REDIS_OPTIONS
+    __format: json
+  cluster:
+    nodes:
+      __name: REDIS_CLUSTER_NODES
+      __format: json
+    options:
+      __name: REDIS_CLUSTER_OPTIONS
+      __format: json
+  transactionQueueName: TRANSACTION_QUEUE_NAME
+
+cache:
+  enabled:
+    __name: CACHE_ENABLED
+    __format: json
+  redisEnabled:
+    __name: REDIS_CACHE_ENABLED
+    __format: json
+  ttl:
+    __name: CACHE_TTL
+    __format: number
+
+
+awsConfig:
+  isMockS3: IS_MOCK_S3
+  accessKeyId: ACCESS_KEY_ID
+  secretAccessKey: SECRET_ACCESS_KEY
+  bucketName: S3_BUCKET_NAME
+  downloadFolder: S3_DOWNLOAD_FOLDER
+  s3DataLakeBucket: S3_DATALAKE_BUCKET
+  s3HourlyTransactionFileDataLakeFolder: S3_HOURLY_TRANSACTION_FILE_DATA_LAKE_FOLDER
+  cloudFrontBaseLink: CLOUD_FRONT_BASE_LINK
+  cloudFrontPrivateKeyName: CLOUD_FRONT_PRIVATE_KEY_NAME
+  cloudFrontKeyPairIdName: CLOUD_FRONT_KEY_PAIR_NAME
+  cloudFrontTempLinkExpirationTimeInMs: CLOUD_FRONT_EXPIRATION
+
+newrelic:
+  licenseKey: NEWRELIC_LICENSE_KEY
+  enabled:
+    __name: NEWRELIC_ENABLED
+    __format: json
+  appName: NEWRELIC_APP_NAME
+  loggingLevel: NEWRELIC_LOGGING_LEVEL
+  distributed_tracing_enabled:
+    __name: NEW_RELIC_DISTRIBUTED_TRACING_ENABLED
+    __format: json
+
+kafka:
+  serverUrl: KAFKA_BOOTSTRAP_SERVER_URL
+  groupId: KAFKA_BOOTSTRAP_GROUP_ID
+  ssl:
+    __name: KAFKA_SSL_ENABLED
+    __format: json
+  sasl:
+    mechanism: KAFKA_SASL_MECHANISM
+    username: KAFKA_SASL_CLUSTER_USERNAME
+    password: KAFKA_SASL_CLUSTER_PASSWORD
+  enabled:
+    __name: KAFKA_ENABLED
+    __format: json
+  sendingTimeoutInMs: 
+      __name: KAFKA_SENDING_TIMEOUT_IN_MS
+      __format: number
+
+logger:
+  enabled:
+    __name: LOGGER_ENABLED
+    __format: json
+  redact:
+    enabled: 
+      __name: LOGGER_REDACT_ENABLED
+      __format: json 
+  level: LOGGER_LEVEL
+
+mongodb: 
+  uri: MONGODB_URI
+  debug: MONGODB_DEBUG
+  username: MONGODB_USERNAME
+  password: MONGODB_PASSWORD
+  dbName: MONGODB_DB_NAME

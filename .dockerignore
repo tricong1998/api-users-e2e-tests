@@ -1,0 +1,6 @@
+./docker/dev/Dockerfile
+./docker/prod/Dockerfile
+node_modules/
+dist/
+.git
+.env

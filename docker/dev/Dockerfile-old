@@ -1,0 +1,41 @@
+ARG NODE_VERSION=18-alpine
+
+FROM node:${NODE_VERSION} As development
+
+ARG DIR=/usr/src/app
+WORKDIR ${DIR}
+
+LABEL maintainer='Coldzy'
+
+# separate step in order to take full advantage of docker's cache
+COPY --chown=node:node package*.json ./
+
+RUN npm ci
+
+COPY --chown=node:node . .
+
+RUN npm run build
+
+RUN npm prune --production
+
+# use node-prune to remove unused files (doc,*.md,images) from node_modules
+RUN wget https://gobinaries.com/tj/node-prune && sh node-prune && node-prune
+
+FROM node:${NODE_VERSION} As production
+
+ENV NODE_ENV=production
+
+ARG DIR=/usr/src/app
+WORKDIR ${DIR}
+
+USER node
+
+COPY --from=development /usr/src/app/node_modules ${DIR}/node_modules
+COPY --from=development /usr/src/app/dist ${DIR}/dist
+
+
+# FROM node:${NODE_VERSION} As build
+
+# WORKDIR ${DIR}
+
+CMD [ "npm", "run", "start:prod" ]

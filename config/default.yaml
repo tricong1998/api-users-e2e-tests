@@ -1,0 +1,79 @@
+# Default config
+service:
+  name: api-users
+  description: Demo unit test and e2e test
+  baseUrl: /api/users
+  docsBaseUrl: /docs/users
+  apiVersion: 0.1.0
+
+server:
+  host: 127.0.0.1
+  port: 3115
+  hostname: 127.0.0.1:3115
+  swaggerSchema: http
+  cors:
+    allowedHeaders: "authorization,content-type,access-token"
+    exposedHeaders: "authorization,x-page,x-per-page,x-pages-count,x-total-count,x-next-page,x-response-time,x-request-id,x-last-page,x-offset,content-disposition"
+
+mongodb:
+  uri: mongodb://mongodb:27017
+  debug: false
+  username: mongodb
+  password: mongodb
+  dbName: api-users
+
+redis:
+  host: 127.0.0.1
+  port: 6379
+  options:
+  cluster:
+    nodes:
+    options:
+
+cache:
+  enabled: false
+  redisEnabled: false
+  ttl: 0
+  
+
+
+kafka:
+  serverUrl: localhost:9092
+  groupId: api-terminal-switch-group
+  clientId: api-terminal-switch
+  ssl: false
+  sasl:
+    mechanism: ''
+    username: ''
+    password: ''
+  enabled: true'
+  sendingTimeoutInMs: 10000
+
+logger:
+  enabled: true
+  redact:
+    enabled: true
+    paths: 
+  level: debug
+  autoLogging: false # to disable the automatic "request completed" and "request errored" logging
+
+
+awsConfig:
+  isMockS3: false
+  accessKeyId:
+  secretAccessKey:
+  bucketName: setel-api-terminal-switch
+  s3DataLakeBucket: setel-datalake-upp-dev
+  s3HourlyTransactionFileDataLakeFolder: unified-platforms/pdb/upp/api-terminal-switch/hourly-transaction-file
+  downloadFolder: assets/dev
+  cloudFrontBaseLink: https://dev-upp-terminal-switch.setel.com
+  cloudFrontPrivateKeyName: /cloudfront/api-terminal-switch-dev/private-key
+  cloudFrontKeyPairIdName: /cloudfront/api-terminal-switch-dev/key-id
+  cloudFrontTempLinkExpirationTimeInMs: 600000
+
+newrelic:
+  licenseKey: ''
+  enabled: false
+  appName: ''
+  loggingLevel: info
+  distributed_tracing_enabled: false
